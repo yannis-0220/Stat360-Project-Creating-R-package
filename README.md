@@ -1,1 +1,1 @@
-# Stat360-Project-Creating-R-package
+# Stat360Project-Mars
