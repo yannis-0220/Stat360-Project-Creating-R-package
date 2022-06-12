@@ -1,0 +1,93 @@
+---
+title: "Vignette：mars"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{mars}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Fitting Multivariate Adaptive Regression Spline (MARS) Models
+##Getting started
+      
+Install the package from GitHub. First install and load the devtools package and then install mars with
+```{r,eval=FALSE}
+install_github(repo = 'https://github.com/SFUStatgen/SFUStat360Projects',
+               subdir = 'Projects/project_ww/mars')
+```
+    
+Now load the package
+```{r,eval=FALSE}
+library(mars)
+```
+##Description of MARS
+
+    Build a regression model using the techniques in Friedman's papers "Multivariate Adaptive Regression Splines". Mars can be used to model nonlinear relationships between a set of predictor variables and a response variable.It is a non-parametric regression technique and can be seen as an extension of linear models that automatically models nonlinearities and interactions between variables.
+##The MARS algorithm
+  
+    Multivariate Adaptive Regression Splines(MARS), is an algorithm for complex non-linear regression problems. The algorithm involves finding a set of simple linear functions that in aggregate result in the best predictive performance.
+    
+##Preparing inputs
+There are two required and one optional input.
+
+1.An R formula is required to specify the response and explanatory variables.
+2. A data frame containing the data to analyze is required. For this example we will use the Wage data from package ISLR.
+    
+    On this R-data statistics page, you will find information about the Wage data set which pertains to Mid-Atlantic Wage Data. The Wage data set is found in the ISLR R package. You can load the Wage data set in R by issuing the following command at the console data("Wage"). This will load the data into a variable called Wage. If R says the Wage data set is not found, you can try installing the package by issuing this command install.packages("ISLR") and then attempt to reload the data. If you need to download R, you can go to the R project website. 
+### wage Format
+    
+    A data frame with 3000 observations on the  12 variables.
+    year        Year that wage information was recorded
+    age         Age of worker
+    sex         Gender
+    education   A factor with levels 1. < HS Grad 2. HS Grad 3. Some College4.
+                 College Grad and 5. Advanced Degree indicating education level
+    ...            ...
+
+```{r,eval=FALSE}
+library(ISLR)
+data(Wage)
+```
+  
+The optional argument is 'mars.control' object. Users should use the constructor 'mars.control()' to specify the three model fitting parameters.
+    
+    - Parameter  Mmax : default value is 2
+    - Parameter  d    : default value is 3
+    - Parameter trace : default value is FALSE
+```{r,eval=FALSE}
+mc <- mars.control(Mmax=10)
+```
+##calling mars()
+```{r,eval=FALSE}
+m <- mars(wage ~ age + education, data=Wage, control=mc)
+```
+##Using mars methods
+
+    plot.mars()     Get a plot shows residuals versus fitted values.
+    print.mars()    Printing a mars object
+    predict.mars()  Predictions from the fitted model
+    summary.mars()  Get a summary of mars object
+
+##References
+     
+    Jerome H. Friedman The Annals of Statistics , Mar., 1991, Vol. 19, No. 1 (Mar., 1991), pp. 1-67. \url{https://doi.org/10.1214/aos/1176347963}.
+    Multivariate adaptive regression spline https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_spline
+    Wage R dataset:
+    https://r-data.pmagunia.com/dataset/r-dataset-package-islr-wage
+
+##calling plot.mars()
+```{r,eval=FALSE}
+plot.mars(m)
+```
+##calling print.mars()
+```{r,eval=FALSE}
+print.mars(m)
+```
+##calling summary.mars()
+```{r,eval=FALSE}
+summary.mars(m)
+```
+##calling predict.mars()
+```{r,eval=FALSE}
+predict.mars(m,newdata=data.frame(age=Wage$age,education=Wage$education))
+```
+
