@@ -51,5 +51,6 @@ The optional argument is 'mars.control' object. Users should use the constructor
 Jerome H. Friedman The Annals of Statistics , Mar., 1991, Vol. 19, No. 1 (Mar., 1991), pp. 1-67. \url{https://doi.org/10.1214/aos/1176347963}.
 
 Multivariate adaptive regression spline https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_spline
+
 Wage R dataset:
 https://r-data.pmagunia.com/dataset/r-dataset-package-islr-wage
