@@ -29,11 +29,15 @@ On this R-data statistics page, you will find information about the Wage data se
 	data(Wage)
 	
 The optional argument is 'mars.control' object. Users should use the constructor 'mars.control()' to specify the three model fitting parameters.
-	- Parameter  Mmax : default value is 2
-	- Parameter  d    : default value is 3
-	- Parameter trace : default value is FALSE
+
+		- Parameter  Mmax : default value is 2
 	
-	mc <- mars.control(Mmax=10)
+		- Parameter  d    : default value is 3
+		
+		- Parameter trace : default value is FALSE
+		
+	
+		mc <- mars.control(Mmax=10)
 # calling mars
 	m <- mars(wage ~ age + education, data=Wage, control=mc)
 
